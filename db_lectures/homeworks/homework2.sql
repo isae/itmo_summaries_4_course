@@ -1,5 +1,6 @@
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+DROP DATABASE ctd;
+CREATE DATABASE ctd CHARACTER SET utf8 COLLATE utf8_bin;
+USE ctd;
 
 CREATE TABLE study_group (
     group_id INT,
@@ -14,7 +15,7 @@ CREATE TABLE student(
     constraint student_group_fk foreign key(group_id) references study_group(group_id));
 CREATE TABLE teacher(
     teacher_id INT,
-    fisrst_name VARCHAR(50),
+    first_name VARCHAR(50),
     surname VARCHAR(50),
     constraint teacher_pk primary key(teacher_id));
 CREATE TABLE discipline(
@@ -37,7 +38,6 @@ CREATE TABLE teacher_discipline(
     foreign key(teacher_id) references teacher(teacher_id),
     foreign key(discipline_id) references discipline(discipline_id));
 
---- TEST DATA
 
 INSERT INTO study_group(group_id, name) VALUES 
     (1, 'M3437'),
@@ -45,5 +45,24 @@ INSERT INTO study_group(group_id, name) VALUES
     (3, 'M3439');
 
 INSERT INTO student(student_id, first_name, surname, group_id) VALUES
-    (1, 'Илья', 'Исаев', 3);
+    (1, 'Илья', 'Исаев', 3),
+    (2, 'Анатолий', 'Ким', 3),
+    (3, 'Владимир', 'Мазин', 3),
+    (4, 'Александр', 'Дейнека', 2),
+    (5, 'Илья', 'Дронов', 1),
+    (6, 'Георгий', 'Коноплич', 1);
 
+INSERT INTO teacher(teacher_id, first_name, surname) VALUES
+    (1, 'Георгий', 'Корнеев'),
+    (2, 'Дмитрий', 'Кочелаев'),
+    (3, 'Арсений', 'Серока');
+    
+INSERT INTO discipline(discipline_id, title) VALUES 
+    (1, 'Базы данных'),
+    (2, 'Функциональное программирование'),
+    (3, 'Проектирование ПО');
+
+INSERT INTO teacher_discipline(teacher_discipline_id, teacher_id, discipline_id) VALUES
+    (1,1,1),
+    (2,2,3),
+    (3,3,2);
