@@ -1,0 +1,15 @@
+mergeSort :: (Ord a) => [a] -> [a]
+merge :: (Ord a) => [a] -> [a] -> [a]
+mergeSort [] = []
+mergeSort [a] = [a]
+mergeSort l = merge firstHalfSorted secondHalfSorted where
+    len = length l
+    firstHalfLength = len `div` 2
+    firstHalf = take firstHalfLength l
+    secondHalf = drop firstHalfLength l
+    firstHalfSorted = mergeSort firstHalf
+    secondHalfSorted = mergeSort secondHalf 
+merge [] [] = []
+merge [] [x] = [x]
+merge [x] [] = [x]
+merge (x:xs) (y:ys) = (if x<y then [x,y] else [y,x]) ++ (merge xs ys) 
