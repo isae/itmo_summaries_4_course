@@ -1,0 +1,74 @@
+Исаев И. М3439
+
+Student_id, Student_Name, Group_id, Group_name, Course_Id, Course_Name, Lecturer_Id, Lecturer_Name, Mark.
+
+1. Функциональные зависимости
+Student_id, Group_id -> Student_Name //id студента локальный внутри группы
+Group_id -> Group_name
+Course_Id -> Course_Name
+Lecturer_Id -> Lecturer_Name
+Student_id, Group_id, Course_Id, Lecturer_Id -> Mark
+
+2. Ключи этого отношения
+{Student_id, Group_id, Course_Id, Lecturer_Id} 
+
+3. НМФЗ
+Student_id, Group_id -> Student_Name
+Group_id -> Group_name
+Course_Id -> Course_Name
+Lecturer_Id -> Lecturer_Name
+Student_id, Group_id, Course_Id, Lecturer_Id -> Mark
+
+4. Приведем НФМЗ к 1НФ:
+(Student_id, Student_Name, Group_id, Group_name, Course_Id, Course_Name, Lecturer_Id, Lecturer_Name, Mark)
+- нет повторяющихся групп
+- аттрибуты атомарны
+- ключ: {Student_id, Group_id, Course_Id, Lecturer_Id}, следовательно отношение в 1НФ
+
+5. Приведем 1НФ к 2НФ:
+Некоторые из неключевых аттрибутов зависят от части ключа, а не от всего ключа: 
+- Sname функционально зависит только от Student_id, Group_id
+- Gname - только от Gid
+- Сname - только от Cid
+- Lname -> только от Lid
+декомпозируем, получаем 5 отношений:
+(Sid,Gid,Sname),
+(Gid,Gname),
+(Cid,Cname),
+(Lid,Lname),
+(Sid,Gid,Cid,Lid,Mark)
+
+6. 2НФ к 3НФ - автоматически, т.к. все неключевые аттрибуты непосредственно зависят от ключей
+7. 3НФ к НФБК - автоматически, т.к. в левых частях ФЗ только ключи
+8. НФБК к 4НФ - автоматически, т.к. в все неключевые части отношений состоят из одного поля
+9. 4НФ к 5НФ -  автоматически, т.к. последнее отношение нельзя декомпозировать на более мелкие
+
+Скрипты, создающие БД (MySQL):
+
+CREATE TABLE group (
+    group_id INT,
+    name VARCHAR(6),
+    constraint group_pk primary key(group_id));
+CREATE TABLE student(
+    student_id INT, 
+    name VARCHAR(50),
+    group_id INT,
+    foreign key(group_id) references group(group_id),
+    constraint student_pk primary key(student_id,group_id));
+CREATE TABLE lecturer(
+    lecturer_id INT,
+    name VARCHAR(50),
+    constraint lecturer_pk primary key(lecturer_id));
+CREATE TABLE course(
+    course_id INT,
+    title VARCHAR(50),
+    constraint course_pk primary key(course_id));
+CREATE TABLE mark(
+    student_id INT,
+    group_id INT,
+    course_id INT,
+    lecturer_id INT,
+    mark INT NULL,
+    foreign key(student_id,group_id) references student(student_id,group_id),
+    foreign key(course_id) references course(course_id),
+    foreign key(lecturer_id) references lecturer(lecturer_id));

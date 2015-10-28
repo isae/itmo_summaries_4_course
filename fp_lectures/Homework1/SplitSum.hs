@@ -41,22 +41,6 @@ testAllBad = foldl (&&) True
 testSumIntFromStringFailure =  assert 
         testAllBad
         "1: Negative tests passed" 
--- end of task 1 --
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 main = do 
     putStrLn testSumIntFromString

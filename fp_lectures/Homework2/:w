@@ -1,0 +1,15 @@
+{-# LANGUAGE MultiParamTypeClasses, FlexibleInstances, FlexibleContexts #-}
+
+module MapVar where 
+class MapVar m v where
+    empty :: m v
+    put :: String -> v -> m v -> m v
+    get :: String -> m v -> Maybe v
+
+-- data MaybeMap v = MaybeMap deriving MapVar Maybe v
+newtype MaybeMap v = Maybe (String, v)
+instance MapVar MaybeMap where
+    empty = Nothing 
+    put map str value = Just (str,value)
+    get (Maybe (str,val)) str1 = if (str == str1) then Just val else Nothing 
+    get Nothing _ = Nothing 

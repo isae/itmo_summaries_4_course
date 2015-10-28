@@ -1,0 +1,26 @@
+Функциональные зависимости:
+Sid,Gid -> Sname
+Gid -> Gname
+Cid -> Cname
+Tid -> Tname
+Gid,Cid,Tid -> Tname
+Gid,Cid,Tid -> Cname
+Gid,Cid,Tid -> Gname
+Sid, Gid, Cid, Tid -> Sname
+Sid, Gid, Cid, Tid -> Gname
+Sid, Gid, Cid, Tid -> Cname
+Sid, Gid, Cid, Tid -> Tname
+Sid, Gid, Cid, Tid -> Mark
+Sid, Gid, Cid, Tid -> Mark
+...
+
+Ключ:
+{Sid, Gid, Cid, Tid}
+
+Неприводимое множество функциональных зависимостей:
+Sid, Gid -> Sname
+Gid -> Gname
+Cid -> Cname
+Tid -> Tname
+Sid, Gid, Cid, Tid -> Mark
+
