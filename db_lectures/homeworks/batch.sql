@@ -1,4 +1,4 @@
-DROP DATABASE ctd;
+DROP DATABASE IF EXISTS ctd;
 CREATE DATABASE ctd CHARACTER SET utf8 COLLATE utf8_bin;
 USE ctd;
 
@@ -43,14 +43,14 @@ CONSTRAINT tch_lid_lid FOREIGN KEY (Lid) REFERENCES lecturers(Lid),
 CONSTRAINT tch_cid_cid FOREIGN KEY (Cid) REFERENCES courses(Cid)
 );
 
-CREATE TABLE marks
+CREATE TABLE points
 (
 Sid int NOT NULL,
 Gid int NOT NULL,
 Cid int NOT NULL,
 Lid int NOT NULL,
-Mark int NOT NULL,
-CONSTRAINT mrk_tch_sid_gid FOREIGN KEY (Sid, Gid) REFERENCES students (Sid, Gid),
+points int NOT NULL,
+CONSTRAINT mrk_tch_sid_gid FOREIGN KEY (Sid, Gid) REFERENCES students (Sid, Gid) ON DELETE CASCADE, 
 CONSTRAINT mrk_tch_gid_cid_lid FOREIGN KEY (Gid, Cid, Lid) REFERENCES teaching (Gid, Cid, Lid)
 );
 
@@ -58,7 +58,8 @@ INSERT INTO groups (Gid, Gn)
 VALUES 
 (1, "M3437"), 
 (2, "M3438"), 
-(3, "M3439");
+(3, "M3439"),
+(4, "M3436");
 
 INSERT INTO students (Sid, Sn, Gid) 
 VALUES
@@ -66,6 +67,7 @@ VALUES
 (2,  "Александр Дейнека", 1),
 (3,  "Илья Иванов", 3),
 (4,  "Сергей Игушкин", 2),
+(4,  "Сергей Игушкин Два", 3),
 (5,  "Жавлон Исомуродов", 1),
 (6,  "Георгий Коноплич", 3),
 (7,  "Илья Дронов", 1),
@@ -88,7 +90,8 @@ VALUES
 (2, "Георгий Корнеев"),
 (3, "Андрей Станкевич"),
 (4, "Павел Скаков"),
-(5, "Ирина Суслина");
+(5, "Ирина Суслина"),
+(6, "Иван Сорокин");
 
 INSERT INTO teaching (Gid, Cid, Lid)
 VALUES
@@ -99,20 +102,24 @@ VALUES
 (2, 3, 3),
 (3, 3, 3),
 (1, 5, 4),
+(1, 4, 6),
 (2, 5, 4),
 (3, 5, 4),
 (1, 6, 2),
 (2, 6, 2),
+(3, 6, 2),
 (3, 6, 3);
 
-INSERT INTO marks (Sid, Gid, Cid, Lid, Mark)
+INSERT INTO points (Sid, Gid, Cid, Lid, points)
 VALUES
-(1, 3, 6, 3, 5),
-(1, 3, 6, 3, 4),
-(2, 1, 6, 2, 5),
-(3, 3, 6, 3, 5),
-(3, 3, 3, 3, 5),
-(4, 2, 6, 2, 5),
-(8, 3, 6, 3, 5),
-(8, 3, 3, 3, 5),
-(7, 1, 6, 2, 5);
+(1, 3, 6, 3, 51),
+(1, 3, 6, 3, 61),
+(2, 1, 6, 2, 51),
+(2, 1, 5, 4, 51),
+(2, 1, 4, 6, 51),
+(3, 3, 6, 3, 51),
+(3, 3, 3, 3, 51),
+(4, 2, 6, 2, 51),
+(8, 3, 6, 3, 51),
+(8, 3, 3, 3, 51),
+(7, 1, 6, 2, 51);
