@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = "com.samborskiy.charpter6.Task3"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jblas:jblas:1.2.4'
+    
+    compile 'org.apache.poi:poi:3.12'
+    compile 'org.apache.poi:poi-ooxml:3.12'
+}

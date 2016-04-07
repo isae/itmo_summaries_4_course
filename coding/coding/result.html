@@ -1,0 +1,54 @@
+<html><head><meta charset="UTF-8"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/></head><body>
+<h2>Циклотомические классы по модулю 17</h2>
+<ul>
+<li>C<sub>0</sub> = [0]</li>
+<li>C<sub>1</sub> = [1, 2, 4, 8, 16, 15, 13, 9]</li>
+<li>C<sub>3</sub> = [3, 6, 12, 7, 14, 11, 5, 10]</li>
+</ul>
+<h2>Минимальные многочлены корней</h2>
+<ul>
+<li>M<sub>0</sub>(x) = x + 1</li>
+<li>M<sub>1</sub>(x) = (x - a<sup>1</sup>)*(x - a<sup>2</sup>)*(x - a<sup>4</sup>)*(x - a<sup>8</sup>)*(x - a<sup>16</sup>)*(x - a<sup>15</sup>)*(x - a<sup>13</sup>)*(x - a<sup>9</sup>)</li>
+<li>M<sub>3</sub>(x) = (x - a<sup>3</sup>)*(x - a<sup>6</sup>)*(x - a<sup>12</sup>)*(x - a<sup>7</sup>)*(x - a<sup>14</sup>)*(x - a<sup>11</sup>)*(x - a<sup>5</sup>)*(x - a<sup>10</sup>)</li>
+</ul>
+<h2>БЧХ-коды длины 17</h2>
+<table class='table'>
+<tr><th>Показатели</th><th>Порождающий</th><th>Размерность<br/>n-deg g(x)</th><th>Расстояние</th></tr>
+<tr>
+<td>[0]</td>
+<td>M<sub>0</sub></td>
+<td>16</td>
+<td>2</td>
+</tr>
+<tr>
+<td>[1, 2, 4, 8, 9, 13, 15, 16]</td>
+<td>M<sub>1</sub></td>
+<td>9</td>
+<td>3</td>
+</tr>
+<tr>
+<td>[3, 5, 6, 7, 10, 11, 12, 14]</td>
+<td>M<sub>3</sub></td>
+<td>9</td>
+<td>4</td>
+</tr>
+<tr>
+<td>[0, 3, 5, 6, 7, 10, 11, 12, 14]</td>
+<td>M<sub>0</sub>M<sub>3</sub></td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr>
+<td>[0, 1, 2, 4, 8, 9, 13, 15, 16]</td>
+<td>M<sub>0</sub>M<sub>1</sub></td>
+<td>8</td>
+<td>4</td>
+</tr>
+<tr>
+<td>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]</td>
+<td>M<sub>1</sub>M<sub>3</sub></td>
+<td>1</td>
+<td>17</td>
+</tr>
+</table>
+</body></html>

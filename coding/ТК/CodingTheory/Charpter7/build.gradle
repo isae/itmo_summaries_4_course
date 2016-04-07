@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = "com.samborskiy.charpter7.Task6"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':Charpter6')
+    compile 'org.apache.poi:poi:3.12'
+    compile 'org.apache.poi:poi-ooxml:3.12'
+}

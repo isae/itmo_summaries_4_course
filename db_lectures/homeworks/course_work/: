@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS laundry;
+CREATE DATABASE laundry CHARACTER SET utf8 COLLATE utf8_bin;
+USE laundry;
+
+CREATE TABLE model(
+  id INT NOT NULL,
+  name VARCHAR(32) NOT NULL,
+  max_load INT NOT NULL,
+  CONSTRAINT model_pk PRIMARY KEY(id)
+);
+
